@@ -37,7 +37,35 @@ class FullTime extends Employee{
 }
 
 class Main{
-
+    
+    constructor(){
+        
+        let again = true;
+        // Switch statement
+        while(again){
+            again = false;
+            // User main menu
+            let userSelection = parseInt(prompt("Main Menu\n1. Add Employee\n2. Remove Employee\n3. Edit Employee\n4. Display Employees"));
+            switch (userSelection) {
+                case 1:
+            
+                    break;
+                case 2:
+            
+                    break;
+                case 3:
+            
+                    break;
+                case 4:
+            
+                    break;
+                default:
+                    again = true;
+                    break;
+            }
+        }
+    }
+    
 }
 
 // IIFE
