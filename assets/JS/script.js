@@ -42,7 +42,6 @@ class FullTime extends Employee{
 class Main{
     
     constructor(){
-        console.log("hi");
         // 3 hardcoded employees
         const employee1 = new FullTime("jake", 30, 40, 30);
         const employee2 = new PartTime("Aleyna", 22, 32, 10);
@@ -65,18 +64,25 @@ class Main{
                     this.addEmployee(userAddEmploy);
                     again = true;
                     break;
+                // Remove employee
                 case 2:
-            
+                    let userDeleteEmploy = prompt("Fire an employee [use id or name]");
+                    this.removeEmployee(userDeleteEmploy);
+                    again = true;
                     break;
+                // Edit employee
                 case 3:
-            
+                    let userEditEmploy = prompt("Enter worker ID and new payrate [seperate each by a comma]").split(",");
+                    this.editEmployee(userEditEmploy[0],userEditEmploy[1]);
+                    again = true;
                     break;
                 // Display employees
                 case 4:
                     this.displayEmployee();
+                    again = true;
                     break;
                 default:
-                    again = true;
+                    again = false;
                     break;
             }
         }
@@ -99,11 +105,25 @@ class Main{
             
         }
     }
+    removeEmployee(removeEmployee){
+        if(isNaN(removeEmployee)){
+            this.employees = this.employees.filter(e => e["name"]!=removeEmployee);
+            this.displayEmployee();
+        }
+        else{
+            this.employees.splice(removeEmployee-1,1);
+            this.displayEmployee();
+        }
+    }
+    editEmployee(id, newPayRate){
+        this.employees[id-1].payRate = newPayRate;
+        this.displayEmployee();
+    }
     displayEmployee(){
         let id = 1;
         console.log(`ID\tName\tSalary\thrs\tpay\tFT/PT`);
         this.employees.forEach(e=>{
-            console.log(`${id}\t${e.name}\t${e.annualSalary}\t${e.hours}\t${e.payRate}\t${e.employeeType}`);
+            console.log(`${id}\t${e.name}\t$${e.annualSalary}\t${e.hours}\t$${e.payRate}\t${e.employeeType}`);
             id++;
         })
     }
